@@ -1,4 +1,12 @@
 Usherette::Application.routes.draw do
+  resources :performances
+
+  resources :venues
+
+
+  resources :shows
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
