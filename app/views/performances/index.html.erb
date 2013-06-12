@@ -1,15 +1,33 @@
 
+<div class='main_calendar'>
+    <h2 id="month">
+        <%= link_to "<", date: @date.prev_month %>
+        <%= @date.strftime("%B %Y") %>   
+        <%= link_to ">", date: @date.next_month %>
+    </h2>
 
-<h2 id="month">
-    <%= link_to "<", date: @date.prev_month %>
-    <%= @date.strftime("%B %Y") %>   
-    <%= link_to ">", date: @date.next_month %>
-</h2>
-
-<div id="performance-calendar">
-    <%= calendar @date do |date| %>
-        <%= date.day %>
-    <% end %>
+    <div id="performance-calendar">
+        <%= calendar @date do |date| %>
+            <%= date.day %>
+            <% if @performances_by_date[date] %>
+                <ul>
+                    <% @performances_by_date[date].each do |perf| %>
+                        <li><%= perf.date.strftime("%l:%M %p") %> <%= link_to perf.show.title, perf %></li>
+                    <% end %>
+                </ul>
+            <% end %>
+        <% end %>
+    </div>
 </div>
-
-
+<div class='side'>
+    Side bar
+    <table>
+        <tr>
+            <td>Show</td>
+            <td>Time</td>
+            <td>Price</td>
+            <td>Qty</td>
+        </tr>
+    </table>
+    <a href='#'> Add to cart</a>
+</div>

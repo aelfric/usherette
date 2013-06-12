@@ -1,9 +1,6 @@
 Usherette::Application.routes.draw do
   resources :performances
-
   resources :venues
-
-
   resources :shows
 
 
