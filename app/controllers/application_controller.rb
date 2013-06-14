@@ -2,13 +2,15 @@ class ApplicationController < ActionController::Base
     protect_from_forgery
     private
     def current_cart
-        Cart.find(session[:cart_id])
+        if session[:cart_id]
+            @current_cart ||= Cart.find(session[:cart_id])
+            session[:cart_id] = nil if @current_cart.purchased_at
+        end
 
-    rescue ActiveRecord::RecordNotFound
-        cart = Cart.create
-        # cart.user = warden.user
-        # cart.save
-        session[:cart_id] = cart.id
-        cart
+        if session[:cart_id].nil?
+            @current_cart = Cart.create!
+            session[:cart_id] ||= @current_cart.id
+        end
+        @current_cart
     end
 end

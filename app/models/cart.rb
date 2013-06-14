@@ -9,13 +9,14 @@ class Cart < ActiveRecord::Base
             return nil
         end
     end
-    def paypal_url(return_url)
+    def paypal_url(return_url, notify_url)
         values = {
             :business => 'friccobono@hopeforchange.org',
             :cmd => '_cart',
             :upload => 1,
             :return => return_url,
-            :invoice => id
+            :invoice => id,
+            :notify_url => notify_url
         }
 
         tickets.each_with_index do |item, index|
