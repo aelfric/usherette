@@ -7,7 +7,7 @@
         <%= csrf_meta_tags %>
     </head>
     <body>
-        <%= link_to "My Cart", cart_path(1) %>
+        <%= link_to "My Cart (#{@current_cart.tickets.count})", cart_path(@current_cart.id) %>
         <%= yield %>
 
     </body>

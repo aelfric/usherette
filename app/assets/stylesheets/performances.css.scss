@@ -97,3 +97,11 @@
 .button:hover {
     background-color: purple;
 }
+
+#month {
+    text-align: center;
+    color: purple;
+    a {
+        color: inherit;
+    }
+}

@@ -1,6 +1,7 @@
 class Cart < ActiveRecord::Base
     has_many :tickets
     # attr_accessible :title, :body
+    attr_accessible :purchased_at
     def add_ticket(perf_id)
         performance = Performance.find(perf_id)
         if performance
