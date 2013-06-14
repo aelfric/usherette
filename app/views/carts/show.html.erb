@@ -1,0 +1,10 @@
+<table border=1>
+    <% @cart.tickets.each do |t| %>
+        <tr>
+            <td><%= t.performance.date_string %></td>
+            <td><%= t.performance.show.title %></td>
+            <td><%= t.performance.price_string %></td>
+        </tr>
+    <% end %>
+</table>
+<%= link_to "Checkout", @cart.paypal_url(performances_url) %>

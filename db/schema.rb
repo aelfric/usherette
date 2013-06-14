@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408025949) do
+ActiveRecord::Schema.define(:version => 20130620121908) do
+
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "performances", :force => true do |t|
     t.integer  "show_id"
@@ -19,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130408025949) do
     t.datetime "date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "price"
   end
 
   add_index "performances", ["show_id"], :name => "index_performances_on_show_id"
@@ -30,6 +36,16 @@ ActiveRecord::Schema.define(:version => 20130408025949) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "tickets", :force => true do |t|
+    t.integer  "cart_id"
+    t.integer  "performance_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "tickets", ["cart_id"], :name => "index_tickets_on_cart_id"
+  add_index "tickets", ["performance_id"], :name => "index_tickets_on_performance_id"
 
   create_table "venues", :force => true do |t|
     t.string   "name"

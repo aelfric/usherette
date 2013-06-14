@@ -1,4 +1,3 @@
-
 <div class='main_calendar'>
     <h2 id="month">
         <%= link_to "<", date: @date.prev_month %>
@@ -29,11 +28,11 @@
             <th>Qty</th>
         </tr>
         <tr>
-            <td>Love, Loss, etc.</td>
+            <td><%=@performance.show.title %></td>
             <td>8PM</td>
-            <td>$15</td>
+            <td><%= @performance.price_string %></td>
             <td>1</td>
         </tr>
     </table>
-    <a href='#' class='button right'> Add to cart</a>
+    <%= button_to "Add to cart", tickets_path(perf_id: @performance.id), class:'button right' %>
 </div>
