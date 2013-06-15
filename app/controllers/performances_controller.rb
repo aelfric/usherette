@@ -11,7 +11,6 @@ class PerformancesController < ApplicationController
   end
 
   def index
-      @cart = current_cart
       @date = params[:date] ? Date.parse(params[:date]) : Date.today
       @performances_by_date = Performance.all.group_by { |p| p.date.to_date }
       @performance = Performance.first

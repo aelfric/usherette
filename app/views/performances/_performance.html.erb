@@ -1,0 +1,15 @@
+<table border='0' cellpadding='0' cellspacing='0' class='add_to_cart_table'>
+    <tr>
+        <th>Show</th>
+        <th>Time</th>
+        <th>Price</th>
+        <th>Qty</th>
+    </tr>
+    <tr>
+        <td><%=performance.show.title %></td>
+        <td>8PM</td>
+        <td><%= performance.price_string %></td>
+        <td>1</td>
+    </tr>
+</table>
+<%= button_to "Add to cart", tickets_path(perf_id: performance.id), class:'button right' %>

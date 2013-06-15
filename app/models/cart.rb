@@ -1,11 +1,17 @@
 class Cart < ActiveRecord::Base
     has_many :tickets
-    # attr_accessible :title, :body
-    attr_accessible :purchased_at
+    attr_accessible :purchased_at, :order_firstname, :order_lastname, :order_email
+
     def add_ticket(perf_id)
         performance = Performance.find(perf_id)
         if performance
-            return Ticket.new(performance_id: perf_id, cart_id: self.id)
+            ticket = Ticket.find_by_cart_id_and_performance_id(self.id, perf_id)
+            if ticket
+                ticket.quantity += 1
+            else
+                ticket = Ticket.new(performance_id: perf_id, cart_id: self.id)
+            end
+            return ticket
         else
             return nil
         end

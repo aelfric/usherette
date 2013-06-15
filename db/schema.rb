@@ -11,12 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620121910) do
+ActiveRecord::Schema.define(:version => 20130621223604) do
 
   create_table "carts", :force => true do |t|
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.datetime "purchased_at"
+    t.string   "order_firstname"
+    t.string   "order_lastname"
+    t.string   "order_email"
   end
 
   create_table "payment_notifications", :force => true do |t|
@@ -50,8 +53,9 @@ ActiveRecord::Schema.define(:version => 20130620121910) do
   create_table "tickets", :force => true do |t|
     t.integer  "cart_id"
     t.integer  "performance_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "quantity",       :default => 1
   end
 
   add_index "tickets", ["cart_id"], :name => "index_tickets_on_cart_id"

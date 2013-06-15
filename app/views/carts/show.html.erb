@@ -7,4 +7,5 @@
         </tr>
     <% end %>
 </table>
-<%= link_to "Checkout", @cart.paypal_url(performances_url, payment_notifications_url) %>
+<%= link_to 'Begin Checkout', edit_cart_path(@current_cart) %>
+<%= link_to "Checkout", @current_cart.paypal_url(performances_url, payment_notifications_url) %>
