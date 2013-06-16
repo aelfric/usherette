@@ -7,7 +7,6 @@ class PaymentNotification < ActiveRecord::Base
     private
     def mark_cart_as_purchased
         if status == "Completed"
-            logger.debug "DEBUG: cart id %d" % self.cart.id
             self.cart.purchased_at = Time.now
             self.cart.save
         end

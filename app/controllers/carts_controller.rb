@@ -8,8 +8,7 @@ class CartsController < ApplicationController
 
     def update
         @cart = current_cart
-        if @cart.update_attributes(params[:cart])
-            @cart.placed_at = Time.now()
+        if @cart.update_attributes(params[:cart].merge(:placed_at => Time.now()))
             @cart.save
             redirect_to @cart.paypal_url(performances_url, payment_notifications_url)
         else
