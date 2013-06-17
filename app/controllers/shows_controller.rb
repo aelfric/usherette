@@ -1,4 +1,5 @@
 class ShowsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :will_call]
   # GET /shows
   # GET /shows.json
   def index
@@ -79,5 +80,10 @@ class ShowsController < ApplicationController
       format.html { redirect_to shows_url }
       format.json { head :no_content }
     end
+  end
+
+  def will_call
+      @show = Show.find(params[:id])
+      @performances = Performance.find_all_by_show_id(@show.id)
   end
 end

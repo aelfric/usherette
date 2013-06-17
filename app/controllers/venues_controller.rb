@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   # GET /venues
   # GET /venues.json
   def index

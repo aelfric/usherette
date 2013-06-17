@@ -1,4 +1,6 @@
 Usherette::Application.routes.draw do
+  devise_for :users
+
     root :to => 'performances#index'
   resources :performances
   resources :venues
@@ -6,4 +8,5 @@ Usherette::Application.routes.draw do
   resources :tickets
   resources :carts
   resources :payment_notifications
+  match 'shows/:id/will_call' => 'shows#will_call'
 end
