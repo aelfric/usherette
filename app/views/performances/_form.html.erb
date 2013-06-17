@@ -1,0 +1,16 @@
+<%= form_for @performance do  |f|%>
+    <%= f.hidden_field :show_id, value: @show.id %>
+    <div class='field'>
+    <%= f.label :date %>
+    <%= f.text_field :date %>
+</div>
+<div class='field'>
+    <%= f.label "Venue", :venue_id %>
+    <%= f.select :venue_id, @venues %>
+</div>
+<div class='field'>
+        <%= f.label "Ticket Price (in cents)", :price %>
+        <%= f.text_field :price %>
+    </div>
+    <%= f.submit %>
+<% end %>
