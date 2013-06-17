@@ -4,6 +4,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  margin: 0;
 }
 
 p, ol, ul, td {
@@ -55,4 +56,33 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+.header {
+    background-color: #b07f9f;
+    color: white;
+    border-bottom: 3px solid #257074;
+    h1 {
+        font-family: Lobster; 
+        float: left;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+        font-weight: bold;
+    }
+
+    .logout {
+        float: right;
+    }
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.column {
+    width: 50%;
+    float: left;
 }

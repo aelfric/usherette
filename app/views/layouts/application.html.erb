@@ -9,15 +9,21 @@
     </head>
     <body>
         <div class='header'>
-            <h1 style='font-family: Lobster; float: left;'><%= link_to "Usherette", root_path %></h1>
-            <%= link_to "My Cart (#{@current_cart.tickets.count})", edit_cart_path(@current_cart) %>
-            <% if user_signed_in? %>
-                Logged in as <%= current_user.email %>
-            <%= link_to "Logout", destroy_user_session_path, :method=>:delete %>
-            <% end %>
+            <div class='container'>
+                <h1 style=''><%= link_to "Usherette", root_path %></h1>
+                <%= link_to "My Cart (#{@current_cart.tickets.count})", edit_cart_path(@current_cart) %>
+                <% if user_signed_in? %>
+                    <div class='logout'>
+                        Logged in as <%= current_user.email %><br />
+                        <%= link_to "Logout", destroy_user_session_path, :method=>:delete %>
+                    </div>
+                <% end %>
+                <div style='clear: both'></div>
+            </div>
         </div>
-        <div style='clear: both'></div>
-        <%= yield %>
+        <div class='container'>
+            <%= yield %>
+        </div>
 
     </body>
 </html>

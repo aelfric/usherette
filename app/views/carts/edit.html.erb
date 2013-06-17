@@ -1,11 +1,11 @@
 <%= form_for @current_cart do |f|%>
     <h2>Order Summary</h2>
-    <table border=1>
+    <table class='order_summary' >
         <tr>
-            <td>When</td>
-            <td>What</td>
-            <td>Price</td>
-            <td>Quantity</td>
+            <th>When</th>
+            <th>What</th>
+            <th>Price</th>
+            <th>Quantity</th>
         </tr>
     <% @current_cart.tickets.each do |t| %>
         <tr>

@@ -9,6 +9,13 @@
         font-size: 10px;
         padding: 6px;
         border: 1px solid #999;
+        ul {
+            padding: 0;
+            li {
+                list-style: none;
+                margin: 0;
+            }
+        }
     }
 
 
@@ -46,15 +53,6 @@
 #articles ul {
     font-size: 11px;
     padding-left: 20px;
-}
-
-.main_calendar {
-    width: 75%;
-    float:left;
-}
-.side {
-    padding: 22px;
-    float: left;
 }
 
 .add_to_cart_table {

@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<h2><%= @show.title %></h2>
 <p>
-  <b>Title:</b>
-  <%= @show.title %>
+  <%= @show.description_to_html %>
 </p>
 
-<p>
-  <b>Description:</b>
-  <%= @show.description %>
-</p>
-
-<ul>
+<table>
     <% @show.performances.each do |performance| %>
-        <li><%= performance.date %> - <%= performance.venue.name %></li>
+        <tr>
+            <td><%= performance.venue.name %><br /><%= performance.date_string %></td>
+            <td><%= link_to "Show", performance_path(performance) %></td>
+            <td><%= link_to "Edit", edit_performance_path(performance) %></td>
+        </tr>
     <% end %>
-</ul>
+</table>
 <%= link_to 'Add Performance', new_performance_path(show_id: @show.id) %>
 
 <%= link_to 'Edit', edit_show_path(@show) %> |

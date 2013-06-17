@@ -1,3 +1,11 @@
-<%= @performance.show.title %>
-<%= @performance.show.description %>
-    <%= render :partial=> 'performance', :locals => {:performance => @performance} %>
+    <h2><%= @performance.show.title %></h2>
+<div class='column left'>
+    <h3>About the show</h3>
+    <p><%= @performance.show.description_to_html %></p>
+</div>
+<div class='column right'>
+    <p><b>Where:</b> <%= @performance.venue.name %></p>
+    <p><b>When:</b> <%= @performance.date_string %></p>
+    <p><b>Price:</b> <%= @performance.price_string %></p>
+    <%= button_to "Add to cart", tickets_path(perf_id: @performance.id), class:'button' %>
+</div>
