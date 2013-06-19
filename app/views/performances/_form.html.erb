@@ -5,11 +5,11 @@
     <%= f.text_field :date %>
 </div>
 <div class='field'>
-    <%= f.label "Venue", :venue_id %>
-    <%= f.select :venue_id, @venues %>
+    <%= f.label :venue_id , "Venue"%>
+    <%= f.select :venue_id, @venues.map{ |v| v.name } %>
 </div>
 <div class='field'>
-        <%= f.label "Ticket Price (in cents)", :price %>
+        <%= f.label :price,  "Ticket Price (in cents)" %>
         <%= f.text_field :price %>
     </div>
     <%= f.submit %>

@@ -1,17 +1,56 @@
 <style>
-    .dark {background-color: purple; color: white;}
+    table {
+        margin-top: 22px;
+    }
+    .dark {
+        background-color: #633E56; 
+        color: white;
+        text-align: center;}
+
+    .odd {
+        background-color: #84B07F;
+    }
+
+    td {
+        padding: 3px 22px;
+    }
+
+    .total {
+        font-weight: bold;
+    }
+
+    .perf_total {
+        font-weight: bold;
+        font-style: italic;
+    }
 </style>
-<table border="1">
+<h2>Will Call - <%= @show.title %></h2>
+<table cellpadding=0 cellspacing=0 >
+    <% total = 0 %>
     <% @show.performances.each do |p| %>
+            <% perf_total = 0 %>
         <tr>
-    <td colspan='3' class='dark'><%= p.date_string %></td>
-    <% p.tickets.each do |t| %>
-        <tr>
-            <td><%= t.cart.order_firstname %> </td>
-            <td><%= t.cart.order_lastname %></td>
-            <td><%= t.quantity %></td>
+            <td colspan='4' class='dark'><%= p.date_string %></td>
+            <% i = 0 %>
+            <% p.tickets.each do |t| %>
+                <tr class='<%= i % 2 ==0 ? 'even':'odd' %>'>
+                    <td><%= t.cart.placed_at %></td>
+                    <td><%= t.cart.order_firstname %> </td>
+                    <td><%= t.cart.order_lastname %></td>
+                    <td><%= t.quantity %></td>
+                    <% total += t.quantity %>
+                    <% perf_total += t.quantity %>
+                </tr>
+                <% i+=1 %>
+            <% end %>
+            <tr class='perf_total'>
+                <td colspan='3'><%= p.date_string %> Total</td>
+                <td><%= perf_total %></td>
+            </tr>
         </tr>
     <% end %>
-</tr>
-<% end %>
+    <tr class='total'>
+        <td colspan='3'>Show Total</td>
+        <td><%= total %></td>
+    </tr>
 </table>

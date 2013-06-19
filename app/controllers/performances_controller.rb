@@ -8,7 +8,16 @@ class PerformancesController < ApplicationController
 
   def create
       @performance = Performance.new(params[:performance])
-      @performance.save
+      @show = Show.find(params[:show_id])
+    respond_to do |format|
+      if @performance.save
+        format.html { redirect_to @performance, notice: 'Performance was successfully created.' }
+        format.json { render json: @performance, status: :created, location: @performance }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @performance.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def index
