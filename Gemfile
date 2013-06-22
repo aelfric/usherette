@@ -23,6 +23,12 @@ end
 gem 'jquery-rails'
 gem 'devise'
 
+group :development do
+    gem 'capistrano'
+    gem 'capistrano-ext'
+    gem 'rvm-capistrano'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
