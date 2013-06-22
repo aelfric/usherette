@@ -8,7 +8,7 @@ class PerformancesController < ApplicationController
 
   def create
       @performance = Performance.new(params[:performance])
-      @show = Show.find(params[:show_id])
+      @show = Show.find(params[:performance][:show_id])
     respond_to do |format|
       if @performance.save
         format.html { redirect_to @performance, notice: 'Performance was successfully created.' }

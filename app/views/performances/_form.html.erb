@@ -6,7 +6,7 @@
 </div>
 <div class='field'>
     <%= f.label :venue_id , "Venue"%>
-    <%= f.select :venue_id, @venues.map{ |v| v.name } %>
+    <%= f.select :venue_id, Venue.all.collect { |v| [v.name, v.id] } %>
 </div>
 <div class='field'>
         <%= f.label :price,  "Ticket Price (in cents)" %>
