@@ -1,6 +1,9 @@
 class Cart < ActiveRecord::Base
     has_many :tickets
     attr_accessible :purchased_at, :order_firstname, :order_lastname, :order_email
+    validates_presence_of :order_firstname, :only => :update
+    validates_presence_of :order_lastname, :only => :update
+
 
     def add_ticket(perf_id)
         performance = Performance.find(perf_id)
@@ -28,7 +31,7 @@ class Cart < ActiveRecord::Base
 
         tickets.each_with_index do |item, index|
             values.merge!({
-                "amount_#{index + 1}" => item.performance.price_string,
+                "amount_#{index + 1}" => item.performance.price * item.quantity,
                 "item_name_#{index + 1}" => item.performance.show.title,
                 "item_number_#{index + 1}" => item.performance.id,
                 "quantity_#{index + 1}" => 1

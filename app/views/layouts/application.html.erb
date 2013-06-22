@@ -10,7 +10,7 @@
     <body>
         <div class='header'>
             <h1 style='font-family: Lobster; float: left;'><%= link_to "Usherette", root_path %></h1>
-            <%= link_to "My Cart (#{@current_cart.tickets.count})", cart_path(@current_cart.id) %>
+            <%= link_to "My Cart (#{@current_cart.tickets.count})", edit_cart_path(@current_cart) %>
         </div>
         <div style='clear: both'></div>
         <%= yield %>
