@@ -39,6 +39,8 @@ namespace :deploy do
     desc "Symlink shared/* files"
     task :symlink_shared, :roles => :app do
         run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+        run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
+        run "ln -nfs #{shared_path}/certs/ #{release_path}/certs/"
     end
 end
 
