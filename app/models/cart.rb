@@ -21,7 +21,7 @@ class Cart < ActiveRecord::Base
     end
     def paypal_url(return_url, notify_url)
         values = {
-            :business => 'friccobono@hopeforchange.org',
+            :business => APP_CONFIG[:paypal_email],
             :cmd => '_cart',
             :upload => 1,
             :return => return_url,
@@ -42,13 +42,13 @@ class Cart < ActiveRecord::Base
 
     def paypal_encrypted_url(return_url, notify_url)
         values = {
-            :business => 'friccobono@hopeforchange.org',
+            :business => APP_CONFIG[:paypal_email],
             :cmd => '_cart',
             :upload => 1,
             :return => return_url,
             :invoice => id,
             :notify_url => notify_url,
-            :cert_id => 'J2H5PSMFSJ6E2'
+            :cert_id => APP_CONFIG[:paypal_cert_id]
         }
 
         tickets.each_with_index do |item, index|
