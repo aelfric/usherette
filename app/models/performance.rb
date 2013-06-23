@@ -11,6 +11,6 @@ class Performance < ActiveRecord::Base
       return "$%d.%02d" %  [self.price / 100, self.price % 100]
   end
   def date_string
-      return self.date.strftime('%H:%M%p - %b %e')
+      return self.date.strftime('%l:%M%p - %b %e')
   end
 end
