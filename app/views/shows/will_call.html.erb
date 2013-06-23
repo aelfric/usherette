@@ -16,12 +16,20 @@
     }
 
     .total {
+        border-top: 2px solid #333;
         font-weight: bold;
     }
 
     .perf_total {
         font-weight: bold;
         font-style: italic;
+    }
+
+    .total td {
+        border-top: 2px solid #333;
+    }
+    .perf_total td {
+        border-top: 1px solid #333;
     }
 </style>
 <h2>Will Call - <%= @show.title %></h2>
@@ -30,7 +38,7 @@
     <% @show.performances.each do |p| %>
             <% perf_total = 0 %>
         <tr>
-            <td colspan='4' class='dark'><%= p.date_string %></td>
+            <td colspan='5' class='dark'><%= p.date_string %></td>
             <% i = 0 %>
             <% p.tickets.each do |t| %>
                 <% if t.cart.purchased_at? %>
@@ -38,6 +46,7 @@
                         <td><%= t.cart.placed_at %></td>
                         <td><%= t.cart.order_firstname %> </td>
                         <td><%= t.cart.order_lastname %></td>
+                        <td><%= t.cart.order_email %></td>
                         <td><%= t.quantity %></td>
                         <% total += t.quantity %>
                         <% perf_total += t.quantity %>
@@ -46,13 +55,13 @@
                 <% end %>
             <% end %>
             <tr class='perf_total'>
-                <td colspan='3'><%= p.date_string %> Total</td>
+                <td colspan='4'><%= p.date_string %> Total</td>
                 <td><%= perf_total %></td>
             </tr>
         </tr>
     <% end %>
     <tr class='total'>
-        <td colspan='3'>Show Total</td>
+        <td colspan='4'>Show Total</td>
         <td><%= total %></td>
     </tr>
 </table>
