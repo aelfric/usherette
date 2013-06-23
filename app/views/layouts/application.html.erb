@@ -21,6 +21,11 @@
                 <div style='clear: both'></div>
             </div>
         </div>
+        <% if flash[:notice] %>
+            <div class='notice'>
+                <%= flash[:notice] %>
+            </div>
+        <% end %>
         <div class='container'>
             <%= yield %>
         </div>
