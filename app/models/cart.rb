@@ -12,7 +12,7 @@ class Cart < ActiveRecord::Base
             if ticket
                 ticket.quantity += quantity.to_i
             else
-                ticket = Ticket.new(performance_id: perf_id, cart_id: self.id)
+                ticket = Ticket.new(performance_id: perf_id, cart_id: self.id, quantity: quantity)
             end
             return ticket
         else
