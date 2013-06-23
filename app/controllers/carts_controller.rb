@@ -10,9 +10,7 @@ class CartsController < ApplicationController
         @cart = current_cart
         if @cart.update_attributes(params[:cart].merge(:placed_at => Time.now()))
             @cart.save
-            
-            redirect_using_post "https://www.sandbox.paypal.com/cgi-bin/webscr", 
-                {"cmd" => "_s-xclick", "encrypted" => @current_cart.paypal_encrypted_url(performances_url, payment_notifications_url)}
+            redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?"+ {"cmd" => "_s-xclick", "encrypted" => @current_cart.paypal_encrypted_url(performances_url, payment_notifications_url)}.to_query
         else
             render :edit
         end
