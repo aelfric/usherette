@@ -5,12 +5,12 @@ class Cart < ActiveRecord::Base
     validates_presence_of :order_lastname, :if => :placed_at?
 
 
-    def add_ticket(perf_id)
+    def add_ticket(perf_id, quantity)
         performance = Performance.find(perf_id)
         if performance
             ticket = Ticket.find_by_cart_id_and_performance_id(self.id, perf_id)
             if ticket
-                ticket.quantity += 1
+                ticket.quantity += quantity.to_i
             else
                 ticket = Ticket.new(performance_id: perf_id, cart_id: self.id)
             end

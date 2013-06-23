@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
     def create
         @cart = current_cart
-        @ticket = @cart.add_ticket(params[:perf_id])
+        @ticket = @cart.add_ticket(params[:ticket][:performance_id], params[:ticket][:quantity])
         respond_to do |format|
             if @ticket.save
                 format.html { redirect_to performances_path}

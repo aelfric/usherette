@@ -7,5 +7,11 @@
     <p><b>Where:</b> <%= @performance.venue.name %></p>
     <p><b>When:</b> <%= @performance.date_string %></p>
     <p><b>Price:</b> <%= @performance.price_string %></p>
-    <%= button_to "Add to cart", tickets_path(perf_id: @performance.id), class:'button' %>
+    <%= form_for Ticket.new do |f| %>
+    <p><b>How Many:</b>
+        <%= f.select :quantity, (1..10).to_a %>
+        </p>
+        <%= f.hidden_field :performance_id, value: @performance.id %>
+        <%= f.submit "Add to cart", class:'button' %>
+    <% end %>
 </div>
