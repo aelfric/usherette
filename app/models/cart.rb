@@ -40,7 +40,47 @@ class Cart < ActiveRecord::Base
         "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
     end
 
+    def paypal_encrypted_url(return_url, notify_url)
+        values = {
+            :business => 'friccobono@hopeforchange.org',
+            :cmd => '_cart',
+            :upload => 1,
+            :return => return_url,
+            :invoice => id,
+            :notify_url => notify_url,
+            :cert_id => 'J2H5PSMFSJ6E2'
+        }
+
+        tickets.each_with_index do |item, index|
+            values.merge!({
+                "amount_#{index + 1}" => to_price_string(item.performance.price * item.quantity),
+                "item_name_#{index + 1}" => item.performance.show.title,
+                "item_number_#{index + 1}" => item.performance.id,
+                "quantity_#{index + 1}" => 1
+            })
+        end
+        return  encrypt_for_paypal(values)
+    end
     private
+
+    PAYPAL_CERT_PEM = File.read("#{Rails.root}/certs/paypal_cert.pem")
+    APP_CERT_PEM = File.read("#{Rails.root}/certs/app_cert.pem")
+    APP_KEY_PEM = File.read("#{Rails.root}/certs/app_key.pem")
+
+    def encrypt_for_paypal(values)
+        signed = OpenSSL::PKCS7::sign(OpenSSL::X509::Certificate.new(APP_CERT_PEM),
+                                      OpenSSL::PKey::RSA.new(APP_KEY_PEM, ''), 
+                                      values.map { |k, v| "#{k}=#{v}" }.join("\n"), 
+                                      [], 
+                                      OpenSSL::PKCS7::BINARY)
+        OpenSSL::PKCS7::encrypt(
+            [OpenSSL::X509::Certificate.new(PAYPAL_CERT_PEM)], 
+            signed.to_der, 
+            OpenSSL::Cipher::Cipher::new("DES3"),
+            OpenSSL::PKCS7::BINARY).to_s.gsub("\n", "")
+    end
+
+
 
     def to_price_string(price)
         return "%d.%d" % [price / 100, price % 100]

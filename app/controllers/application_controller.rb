@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
         end
         @current_cart
     end
+    def redirect_using_post(url, params)
+        render :text => %Q{<form action="#{url}">#{params.map{|k,v| %Q{<input type=
+                                                               hidden" name="#{k}" value="#{v}" />}}.join('')}</form><script>document.forms[0].submit()</script>}
+    end
 end
