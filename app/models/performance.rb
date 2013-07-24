@@ -17,6 +17,11 @@ class Performance < ActiveRecord::Base
       return self.quantity_sold >= self.venue.capacity
   end
   def quantity_sold
-      self.tickets.sum(:quantity)
+      total = 0
+      self.tickets.includes(:cart).collect { |t| total =+ t.quantity if t.cart.placed_at? }
+      total
+  end
+  def quantity_remaining
+      self.venue.capacity - self.quantity_sold
   end
 end
