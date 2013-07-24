@@ -1,4 +1,16 @@
 <%= form_for @current_cart do |f|%>
+  <% if @current_cart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@current_cart.errors.count, "error") %> prohibited this show from being saved:</h2>
+
+      <ul>
+      <% @current_cart.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <h2>Order Summary</h2>
     <table class='order_summary' >
         <tr>
@@ -12,7 +24,7 @@
             <td><%= t.performance.date_string %></td>
             <td><%= t.performance.show.title %></td>
             <td><%= t.performance.price_string %></td>
-            <td><%= t.quantity %></td>
+            <td><%= t.quantity %> <% if not t.still_available? %> <b>Sold Out</b><% end %></td>
         </tr>
     <% end %>
 </table>

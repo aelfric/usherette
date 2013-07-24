@@ -3,11 +3,11 @@ class Cart < ActiveRecord::Base
     attr_accessible :purchased_at, :placed_at, :order_firstname, :order_lastname, :order_email
     validates_presence_of :order_firstname, :if => :placed_at? 
     validates_presence_of :order_lastname, :if => :placed_at?
-
+    validate :tickets_still_available?, :if => :placed_at?
 
     def add_ticket(perf_id, quantity)
         performance = Performance.find(perf_id)
-        if performance
+        if performance and not performance.sold_out?
             ticket = Ticket.find_by_cart_id_and_performance_id(self.id, perf_id)
             if ticket
                 ticket.quantity += quantity.to_i
@@ -80,7 +80,15 @@ class Cart < ActiveRecord::Base
             OpenSSL::PKCS7::BINARY).to_s.gsub("\n", "")
     end
 
-
+    def tickets_still_available?
+        self.tickets.each do |t| 
+            if t.performance.sold_out? or t.quantity + t.performance.quantity_sold > t.performance.venue.capacity
+                errors.add(:base, "One or more of the shows in your cart is sold out.")
+                return false
+            end
+        end
+        return true
+    end
 
     def to_price_string(price)
         return "%d.%d" % [price / 100, price % 100]

@@ -13,4 +13,10 @@ class Performance < ActiveRecord::Base
   def date_string
       return self.date.strftime('%l:%M%p - %b %e')
   end
+  def sold_out?
+      return self.quantity_sold >= self.venue.capacity
+  end
+  def quantity_sold
+      self.tickets.sum(:quantity)
+  end
 end
