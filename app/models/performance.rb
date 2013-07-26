@@ -18,7 +18,11 @@ class Performance < ActiveRecord::Base
   end
   def quantity_sold
       total = 0
-      self.tickets.includes(:cart).collect { |t| total =+ t.quantity if t.cart.placed_at? }
+      self.tickets.each do |t|
+          if t.cart.purchased_at?
+              total += t.quantity
+          end
+      end
       total
   end
   def quantity_remaining
