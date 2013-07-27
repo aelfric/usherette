@@ -12,4 +12,14 @@ class TicketsController < ApplicationController
             end
         end
     end
+
+    def destroy
+        @ticket = Ticket.find(params[:id])
+        if @ticket.cart == current_cart
+            @ticket.destroy
+            redirect_to edit_cart_url(current_cart), :notice => 'These tickets have been removed from your cart.'
+        else
+            redirect_to edit_cart_url(current_cart), :notice => 'Sorry, an error occurred.  Please try again.'
+        end
+    end
 end
