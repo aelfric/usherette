@@ -1,4 +1,5 @@
 Usherette::Application.routes.draw do
+  resources :messages, :only => [:new, :create]
   devise_for :users
 
     root :to => 'performances#index'
