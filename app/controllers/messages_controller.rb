@@ -11,4 +11,7 @@ class MessagesController < ApplicationController
           render 'new'
       end
   end
+
+  def about
+  end
 end

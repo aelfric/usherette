@@ -32,6 +32,11 @@
         <div class='container'>
             <%= yield %>
         </div>
-
+        <div class='footer'>
+            <%= link_to 'Contact', new_message_path() %> |
+            <a href='/about'>About</a>
+            <br />
+            Copyright &copy; 2013 - Frank Riccobono
+        </div>
     </body>
 </html>

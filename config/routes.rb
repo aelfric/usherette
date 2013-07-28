@@ -10,4 +10,5 @@ Usherette::Application.routes.draw do
   resources :carts
   resources :payment_notifications
   match 'shows/:id/will_call' => 'shows#will_call'
+  match 'about' => 'messages#about'
 end

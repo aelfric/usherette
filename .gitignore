@@ -18,3 +18,4 @@ pickle-email-*.html
 *.swp
 /config/app_config.yml
 /config/email.yml
+/config/database.yml
