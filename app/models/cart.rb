@@ -53,10 +53,10 @@ class Cart < ActiveRecord::Base
 
         tickets.each_with_index do |item, index|
             values.merge!({
-                "amount_#{index + 1}" => to_price_string(item.performance.price * item.quantity),
-                "item_name_#{index + 1}" => item.performance.show.title,
+                "amount_#{index + 1}" => to_price_string(item.performance.price),
+                "item_name_#{index + 1}" => "#{item.performance.show.title} #{item.performance.date_string}",
                 "item_number_#{index + 1}" => item.performance.id,
-                "quantity_#{index + 1}" => 1
+                "quantity_#{index + 1}" => item.quantity
             })
         end
         return  encrypt_for_paypal(values)
@@ -83,7 +83,7 @@ class Cart < ActiveRecord::Base
     def tickets_still_available?
         self.tickets.each do |t| 
             if not t.still_available?
-                errors.add(:base, "One or more of the shows in your cart is sold out or occurs in the past.")
+                errors.add(:base, "One or more of the shows in your cart is sold out.")
                 return false
             end
         end
