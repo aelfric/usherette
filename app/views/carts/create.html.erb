@@ -1,0 +1,12 @@
+<p>Order placed for <%= @cart.order_firstname %> <%= @cart.order_lastname %>
+</p>
+<p>A sumary of the order is below </p>
+<table>
+    <tr><td>Show</td><td>Quantity</td></tr>
+    <% @cart.tickets.each do |t| %>
+        <tr>
+        <td><%= t.performance.date_string  %> </td>
+        <td><%= t.quantity %></td>
+    </tr>
+<% end %>
+    </table>

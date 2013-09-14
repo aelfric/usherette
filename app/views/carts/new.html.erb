@@ -1,0 +1,43 @@
+<h1><%= @show.title %></h1>
+<%= form_for @cart do |f| %>
+  <% if @cart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cart.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @cart.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= hidden_field_tag :show_id, @show.id %>
+    <div class='field'>
+    <%= f.label :order_firstname, 'First Name'%>
+    <%= f.text_field :order_firstname %>
+</div>
+<div class='field'>
+    <%= f.label :order_lastname, 'Last Name'%>
+    <%= f.text_field :order_lastname %>
+</div>
+<table>
+    <tr>
+        <td>Performance</td>
+        <td>Quantity</td>
+    </tr>
+    <% @show.performances.each do |p| %>
+        <tr>
+        <td><%= p.date_string %></td>
+        <td><%= hidden_field_tag "perf[]", p.id %>
+        <%= select_tag "qty[]", options_for_select((0..20).to_a) %> </td>
+</tr>
+<% end %>
+</table>
+<div class='field'>
+    <%= f.label :payment_type %>
+    <%= f.select :payment_type, Cart.payment_types.keys, :include_blank => true %>
+    <div>
+<div class='field'>
+    <%= f.submit 'Submit' %>
+</div>
+<% end %>

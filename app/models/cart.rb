@@ -1,9 +1,11 @@
 class Cart < ActiveRecord::Base
     has_many :tickets
-    attr_accessible :purchased_at, :placed_at, :order_firstname, :order_lastname, :order_email
+    attr_accessible :purchased_at, :placed_at, :order_firstname, :order_lastname, :order_email, :payment_type
     validates_presence_of :order_firstname, :if => :placed_at? 
     validates_presence_of :order_lastname, :if => :placed_at?
+    validates_presence_of :payment_type, :if => :placed_at?
     validate :tickets_still_available?, :if => :placed_at?
+    as_enum :payment_type, :paypal => 0, :door => 1, :check => 2, :cash => 3
 
     def add_ticket(perf_id, quantity)
         performance = Performance.find(perf_id)
