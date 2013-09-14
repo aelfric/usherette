@@ -1,8 +1,12 @@
 <div class='main_calendar'>
     <h2 id="month">
-        <%= link_to "<", date: @date.prev_month %>
+        <%= link_to date: @date.prev_month do %>
+            <i class='icon-backward'></i>
+        <% end %>
         <%= @date.strftime("%B %Y") %>   
-        <%= link_to ">", date: @date.next_month %>
+        <%= link_to date: @date.next_month do %>
+            <i class='icon-forward'></i>
+        <% end %>
     </h2>
     <p style='text-align:center;' >Select a date and time below to purchase tickets or view your <%= link_to "cart", edit_cart_path(@current_cart) %> to checkout.</p>
     <div id="performance-calendar">
