@@ -83,7 +83,7 @@ class Cart < ActiveRecord::Base
     def tickets_still_available?
         self.tickets.each do |t| 
             if not t.still_available?
-                errors.add(:base, "One or more of the shows in your cart is sold out.")
+                errors.add(:base, "One or more of the shows in your cart is sold out or occurs in the past.")
                 return false
             end
         end

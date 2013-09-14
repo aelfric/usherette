@@ -9,6 +9,8 @@
     <p><b>Price:</b> <%= @performance.price_string %></p>
     <% if @performance.sold_out? %>
         <p>We're sorry.  This performance is Sold Out.</p>
+    <% elsif @performance.date <= Date.today %>
+        <p>This performance occurred in the past.</p>
     <% else %>
         <%= form_for Ticket.new do |f| %>
             <p><b>How Many:</b> <%= f.select :quantity, (1..10).to_a %> </p>
