@@ -1,0 +1,12 @@
+<% if need_to_mail.length > 0 %>
+    <div class='note'>
+    <span>Note:</span> 
+    The following items will need to be mailed to you.  
+    Please confirm your shipping details via PayPal.
+    <ul>
+        <% need_to_mail.each do |p| %>
+            <li><%= p.show.title %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>

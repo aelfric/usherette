@@ -12,5 +12,9 @@
         <%= f.label :price,  "Ticket Price (in cents)" %>
         <%= f.text_field :price %>
     </div>
+<div class='field'>
+        <%= f.label :delivery_type  %>
+        <%= f.select :delivery_type, Performance.delivery_types.keys %>
+    </div>
     <%= f.submit %>
 <% end %>

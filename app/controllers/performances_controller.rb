@@ -34,5 +34,20 @@ class PerformancesController < ApplicationController
   end
 
   def edit
+      @performance = Performance.find(params[:id])
+      @show = @performance.show
+  end
+
+  def update 
+      @performance = Performance.new(params[:performance])
+    respond_to do |format|
+      if @performance.save
+        format.html { redirect_to @performance, notice: 'Performance was successfully updated.' }
+        format.json { render json: @performance, status: :created, location: @performance }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @performance.errors, status: :unprocessable_entity }
+      end
+    end
   end
 end

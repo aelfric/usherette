@@ -1,3 +1,4 @@
+<% need_to_mail = []%>
 <%= form_for @current_cart do |f|%>
   <% if @current_cart.errors.any? %>
     <div id="error_explanation">
@@ -28,9 +29,12 @@
             <td><%= t.performance.price_string %></td>
             <td><%= t.quantity %> <% if not t.still_available? %> <b>Sold Out</b><% end %></td>
         </tr>
+        <% if t.performance.mail? %>
+            <% need_to_mail << t.performance %>
+        <% end %>
     <% end %>
 </table>
-    <p> Your tickets will be held for you at the door under the name
+    <p> Unless otherwise noted, your tickets will be held for you at the door under the name
     provided below.</p>
     <div class='field'>
         <%= f.label :order_firstname, 'First Name'%>
@@ -40,6 +44,7 @@
         <%= f.label :order_lastname, 'Last Name'%>
         <%= f.text_field :order_lastname %>
     </div>
+    <%= render :partial=>'shipping', :locals=> {:need_to_mail => need_to_mail} %>
     <div class='field'>
         <%= f.submit 'Checkout with PayPal' %>
     </div>
