@@ -39,7 +39,8 @@ class PerformancesController < ApplicationController
   end
 
   def update 
-      @performance = Performance.new(params[:performance])
+      @performance = Performance.find(params[:id])
+      @performance.update_attributes(params[:performance])
     respond_to do |format|
       if @performance.save
         format.html { redirect_to @performance, notice: 'Performance was successfully updated.' }
