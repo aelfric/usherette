@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
     has_many :tickets
+    has_one :payment_notification
     attr_accessible :purchased_at, :placed_at, :order_firstname, :order_lastname, :order_email, :payment_type
     validates_presence_of :order_firstname, :if => :placed_at? 
     validates_presence_of :order_lastname, :if => :placed_at?

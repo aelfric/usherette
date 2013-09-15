@@ -38,7 +38,7 @@
     <% @show.performances.each do |p| %>
             <% perf_total = 0 %>
         <tr>
-            <td colspan='6' class='dark'><%= p.date_string %></td>
+            <td colspan='7' class='dark'><%= p.date_string %></td>
             <% i = 0 %>
             <% p.tickets.each do |t| %>
                 <% if t.cart.purchased_at? %>
@@ -49,6 +49,7 @@
                         <td><%= t.cart.order_email %></td>
                         <td><%= t.quantity %></td>
                         <td><%= t.cart.payment_type %></td>
+                        <td><%= render :partial=>'address', :locals => {:payment_notification => t.cart.payment_notification} %></td>
                         <% total += t.quantity %>
                         <% perf_total += t.quantity %>
                     </tr>
@@ -56,13 +57,13 @@
                 <% end %>
             <% end %>
             <tr class='perf_total'>
-                <td colspan='5'><%= p.date_string %> Total</td>
+                <td colspan='6'><%= p.date_string %> Total</td>
                 <td><%= perf_total %></td>
             </tr>
         </tr>
     <% end %>
     <tr class='total'>
-        <td colspan='5'>Show Total</td>
+        <td colspan='6'>Show Total</td>
         <td><%= total %></td>
     </tr>
 </table>
