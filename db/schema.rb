@@ -11,17 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130914200243) do
+ActiveRecord::Schema.define(:version => 20130622070601) do
 
   create_table "carts", :force => true do |t|
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.datetime "purchased_at"
     t.string   "order_firstname"
     t.string   "order_lastname"
     t.string   "order_email"
     t.datetime "placed_at"
-    t.integer  "payment_type_cd", :default => 0
   end
 
   create_table "payment_notifications", :force => true do |t|
