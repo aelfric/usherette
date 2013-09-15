@@ -4,8 +4,17 @@
     <p><%= @performance.show.description_to_html %></p>
 </div>
 <div class='column right'>
-    <p><b>Where:</b> <%= @performance.venue.name %></p>
-    <p><b>When:</b> <%= @performance.date_string %></p>
+    <% if @performance.venue %>
+        <div style='font-weight: bold; display:block; float:left'>Where:</div> 
+        <div class='venue' style='float:left'>
+            <%= @performance.venue.name %><br />
+            <%= @performance.venue.street_address %><br />
+            <%= @performance.venue.city %>,
+            <%= @performance.venue.state %>
+        <%= @performance.venue.zipcode %>
+    </div>
+    <% end %>
+    <p style='clear:both'><b>When:</b> <%= @performance.date_string %></p>
     <p><b>Price:</b> <%= @performance.price_string %></p>
     <% if @performance.sold_out? %>
         <p>We're sorry.  This performance is Sold Out.</p>
