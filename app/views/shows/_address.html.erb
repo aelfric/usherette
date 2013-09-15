@@ -1,5 +1,7 @@
 <% if payment_notification %>
-    <%= payment_notification.params['address_name'] %>
-    <%= payment_notification.params['address_street'] %>
-    <%= payment_notification.params['address_city'] %>
+    <%= payment_notification.params['address_name'] %><br />
+<%= payment_notification.params['address_street'] %><br />
+<%= payment_notification.params['address_city'] %>,
+<%= payment_notification.params['address_state'] %>
+<%= payment_notification.params['address_zip'] %>
 <% end %>
