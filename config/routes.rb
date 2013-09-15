@@ -9,7 +9,7 @@ Usherette::Application.routes.draw do
   resources :tickets
   resources :carts
   resources :payment_notifications
-  match 'shows/:id/will_call' => 'shows#will_call'
-  match 'shows/:id/reserve' => 'shows#reserve'
+  match 'shows/:id/will_call' => 'shows#will_call', :as => 'will_call'
+  match 'shows/:id/reserve' => 'shows#reserve', :as => 'reserve'
   match 'about' => 'messages#about'
 end

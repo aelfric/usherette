@@ -5,16 +5,20 @@
   <%= @show.description_to_html %>
 </p>
 
-<table>
+<%= link_to new_performance_path(show_id: @show.id), :class=>'add_btn' do %>
+    <i class='icon-plus'></i> New Performance
+<% end %>
+<%= link_to edit_show_path(@show), :class=>'add_btn' do  %>
+    <i class='icon-edit'></i> Edit Curent Show
+<% end %>
+<div class='list'>
     <% @show.performances.each do |performance| %>
-        <tr>
-            <td><%= performance.venue.name %><br /><%= performance.date_string %></td>
-            <td><%= link_to "Show", performance_path(performance) %></td>
-            <td><%= link_to "Edit", edit_performance_path(performance) %></td>
-        </tr>
+        <div class='listing'>
+            <h2><%= performance.venue.name %><br /><%= performance.date_string %></h2>
+            <span class='actions'>
+                <%= link_to "Show", performance_path(performance) %> | 
+                <%= link_to "Edit", edit_performance_path(performance) %>
+            </span>
+        </div>
     <% end %>
-</table>
-<%= link_to 'Add Performance', new_performance_path(show_id: @show.id) %>
-
-<%= link_to 'Edit', edit_show_path(@show) %> |
-<%= link_to 'Back', shows_path %>
+</div>

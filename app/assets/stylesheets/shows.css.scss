@@ -1,3 +1,42 @@
 // Place all the styles related to the shows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.listing {
+    h2 {
+        font-size: 1em; 
+        padding: 0; 
+        margin:0
+    }
+
+    .actions {
+        visibility: hidden;
+        a {
+            text-decoration: none;
+            &:visited {color: blue;}
+            &:hover {color: red;}
+        }
+    }
+
+    &:hover .actions {
+        visibility: visible;
+    }
+    border-bottom: 1px solid grey;
+    padding: 5px;
+}
+
+.list {
+    clear: both;
+    border: 1px solid grey;
+    border-bottom: none;
+}
+
+.add_btn {
+    color: white;
+    text-decoration: none;
+    display: block;
+    border-bottom: 2px solid #257074;
+    background-color: #b07f9f;
+    float: left;
+    padding: 5px;
+    margin: 5px 5px 5px 0;
+}

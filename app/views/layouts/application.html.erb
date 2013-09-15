@@ -17,7 +17,7 @@
             </div>
                 <% if user_signed_in? %>
                     <div class='logout'>
-                        Logged in as <%= current_user.email %><br />
+                        Logged in as <%= current_user.email %>
                         <%= link_to "Logout", destroy_user_session_path, :method=>:delete %>
                     </div>
                 <% end %>
