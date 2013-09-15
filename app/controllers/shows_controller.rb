@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :will_call]
+  before_filter :authenticate_user!
   # GET /shows
   # GET /shows.json
   def index
@@ -85,5 +85,10 @@ class ShowsController < ApplicationController
   def will_call
       @show = Show.find(params[:id])
       @performances = Performance.find_all_by_show_id(@show.id)
+  end
+
+  def reserve
+      @cart = Cart.new
+      @show = Show.find(params[:id])
   end
 end

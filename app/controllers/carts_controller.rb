@@ -1,19 +1,11 @@
 class CartsController < ApplicationController
-    def new
-        @cart = Cart.new
-        if params[:show_id]
-            @show = Show.find(params[:show_id])
-        else
-            redirect_to shows_url(), :notice => "Please select a show."
-        end
-    end
-
+    before_filter :authenticate_user!, :only => [:create]
     def create
         @cart = Cart.new(params['cart'])
         @show = Show.find(params['show_id'])
         @cart.placed_at = Date.today
         if not @cart.save
-            render 'new' and return
+            render 'shows/reserve' and return
         else
             params['perf'].each_with_index do |perf, i|
                 if params['qty'][i].to_i > 0 
@@ -22,7 +14,7 @@ class CartsController < ApplicationController
             end
             @cart.purchased_at = Date.today
             if not @cart.save
-                render 'new'
+                render 'shows/reserve'
             else
                 @cart.reload
             end
