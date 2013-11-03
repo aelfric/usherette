@@ -1,0 +1,36 @@
+
+    table.fancy {
+        margin-top: 22px;
+
+        thead {
+            font-weight: bold;
+            a {color: inherit;}
+        }
+
+        td {
+            padding: 3px 5px;
+        }
+        .dark {
+            background-color: #633E56; 
+            color: white;
+            text-align: center;}
+
+        .odd { background-color: #84B07F;}
+        .even {background-color: #FFFFFF;}
+
+
+    .total {
+        border-top: 2px solid #333;
+        font-weight: bold;
+    }
+
+    .minor_total {
+        font-weight: bold;
+        font-style: italic;
+        td { border-top: 1px solid #333; }
+    }
+
+    .total td {
+        border-top: 2px solid #333;
+    }
+}

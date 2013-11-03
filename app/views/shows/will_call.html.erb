@@ -1,46 +1,41 @@
 <style>
-    table {
-        margin-top: 22px;
-    }
-    .dark {
-        background-color: #633E56; 
-        color: white;
-        text-align: center;}
-
-    .odd {
-        background-color: #84B07F;
-    }
-
-    td {
-        padding: 3px 22px;
-    }
-
-    .total {
-        border-top: 2px solid #333;
-        font-weight: bold;
-    }
-
-    .perf_total {
-        font-weight: bold;
-        font-style: italic;
-    }
-
-    .total td {
-        border-top: 2px solid #333;
-    }
-    .perf_total td {
-        border-top: 1px solid #333;
-    }
 </style>
 <h2>Will Call - <%= @show.title %></h2>
-<table cellpadding=0 cellspacing=0 >
-    <% total = 0 %>
-    <% @show.performances.each do |p| %>
+<table class='fancy' cellpadding=0 cellspacing=0 >
+    <thead>
+        <tr>
+            <td>
+                <%= link_to will_call_path(@show, :sort=>'purchased_at') do %>
+                    Time <i class='icon-sort-by-order'></i>
+                <% end %>
+            </td>
+            <td> 
+                <%= link_to will_call_path(@show, :sort=>'order_firstname') do %>
+                    First <i class='icon-sort-by-alphabet'></i>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to will_call_path(@show, :sort=>'order_lastname') do %>
+                    Last <i class='icon-sort-by-alphabet'></i>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to will_call_path(@show, :sort=>'order_email') do %>
+                    Email <i class='icon-sort-by-alphabet'></i>
+                <% end %>
+             </td>
+                <td>Qty.</td>
+                <td>Type</td>
+                <td>Address</td>
+            </tr>
+        </thead>
+        <% total = 0 %>
+        <% @performances.each do |p| %>
             <% perf_total = 0 %>
         <tr>
             <td colspan='7' class='dark'><%= p.date_string %></td>
             <% i = 0 %>
-            <% p.tickets.each do |t| %>
+            <% p.tickets.joins(:cart).where('carts.purchased_at is not null').order("carts.#{@sort}").each_with_index do |t,i| %>
                 <% if t.cart.purchased_at? %>
                     <tr class='<%= i % 2 ==0 ? 'even':'odd' %>'>
                         <td><%= t.cart.placed_at %></td>
@@ -53,17 +48,16 @@
                         <% total += t.quantity %>
                         <% perf_total += t.quantity %>
                     </tr>
-                    <% i+=1 %>
                 <% end %>
             <% end %>
-            <tr class='perf_total'>
+                <tr class='minor_total'>
                 <td colspan='6'><%= p.date_string %> Total</td>
                 <td><%= perf_total %></td>
             </tr>
         </tr>
     <% end %>
-    <tr class='total'>
-        <td colspan='6'>Show Total</td>
-        <td><%= total %></td>
-    </tr>
-</table>
+        <tr class='total'>
+            <td colspan='6'>Show Total</td>
+            <td><%= total %></td>
+        </tr>
+    </table>

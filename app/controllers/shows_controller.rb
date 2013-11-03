@@ -84,11 +84,13 @@ class ShowsController < ApplicationController
 
   def will_call
       @show = Show.find(params[:id])
+      @sort = params[:sort] ? params[:sort] : 'purchased_at'
       @performances = Performance.find_all_by_show_id(@show.id)
   end
 
   def reserve
       @cart = Cart.new
       @show = Show.find(params[:id])
+      @performances = @show.performances
   end
 end
