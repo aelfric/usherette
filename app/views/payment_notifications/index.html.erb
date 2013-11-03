@@ -1,14 +1,15 @@
 <table>
-    <tr>
+    <!--<tr>
         <td>ID</td>
         <td>Gross Sale</td>
         <td>PayPal Fee</td>
         <td>Net Sale</td>
     </tr>
-
+-->
     <% @payment_notifications.each do |pn| %>
         <tr>
             <td><%= pn.id %></td>
+            <td><%= pn.params['item_name1'] %></td>
             <td><%= pn.params['mc_gross'] %></td>
             <td><%= pn.params['mc_fee'] %></td>
             <td><%= pn.params['mc_gross'].to_f - pn.params['mc_fee'].to_f %></td>
