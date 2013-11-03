@@ -70,6 +70,7 @@ div {
         text-decoration: none;
         color: inherit;
         font-weight: bold;
+        &:hover {text-decoration: underline;}
     }
 
     .logout {
