@@ -58,5 +58,8 @@ module Usherette
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #rack-ssl-enforcer
+    config.middleware.use Rack::SslEnforcer, :only => %r{^/users/}
   end
 end
