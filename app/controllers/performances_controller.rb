@@ -21,7 +21,7 @@ class PerformancesController < ApplicationController
   end
 
   def index
-      @date = params[:date] ? Date.parse(params[:date]) : [Performance.where('date > ?', DateTime.now).minimum(:date),DateTime.now].max.to_date
+      @date = params[:date] ? Date.parse(params[:date]) : [Performance.where('date > ?', DateTime.now).minimum(:date),DateTime.now].compact.max.to_date
       @performances_by_date = Performance.all.group_by { |p| p.date.to_date }
       @performance = Performance.first
   end
