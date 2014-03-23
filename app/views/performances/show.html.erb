@@ -4,18 +4,28 @@
     <p><%= @performance.show.description_to_html %></p>
 </div>
 <div class='column right'>
-    <% if @performance.venue %>
-        <div style='font-weight: bold; display:block; float:left'>Where:</div> 
-        <div class='venue' style='float:left'>
-            <%= @performance.venue.name %><br />
-            <%= @performance.venue.street_address %><br />
-            <%= @performance.venue.city %>,
-            <%= @performance.venue.state %>
-        <%= @performance.venue.zipcode %>
-    </div>
+    <table >
+        <% if @performance.venue %>
+            <tr valign='top'>
+            <td><b>Where:</b></td> 
+            <td>
+                <%= @performance.venue.name %><br />
+                <%= @performance.venue.street_address %><br />
+                <%= @performance.venue.city %>,
+                <%= @performance.venue.state %>
+                <%= @performance.venue.zipcode %>
+            </td>
+        </tr>
     <% end %>
-    <p style='clear:both'><b>When:</b> <%= @performance.date_string %></p>
-    <p><b>Price:</b> <%= @performance.price_string %></p>
+        <tr valign='top'>
+            <td><b>When:</b> </td>
+            <td><%= @performance.date_string %></td>
+        </tr>
+        <tr valign='top'>
+            <td><b>Price:</b> </td>
+            <td><%= @performance.price_string %></td>
+        </tr>
+    </table>
     <% if @performance.sold_out? %>
         <p>We're sorry.  This performance is Sold Out.</p>
     <% elsif @performance.date <= Date.today %>
