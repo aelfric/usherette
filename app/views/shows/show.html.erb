@@ -14,7 +14,7 @@
         <div class='listing'>
             <p><b><%= performance.venue.name %></b><br />
                 <%= link_to "#{performance.date_string}", performance_path(performance) %></p> 
-            <%= link_to_if user_signed_in?, "Edit", edit_performance_path(performance)%>
+                <%= link_to_if(user_signed_in?, "Edit", edit_performance_path(performance)){}%>
         </div>
     <% end %>
     <% if user_signed_in? %>
