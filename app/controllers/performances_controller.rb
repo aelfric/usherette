@@ -1,5 +1,5 @@
 class PerformancesController < ApplicationController
-    before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update]
+    before_filter :authenticate_user!, :except => [:index, :show]
   def new
       @show = Show.find(params[:show_id])
       @performance = Performance.new()

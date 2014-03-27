@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show]
   # GET /shows
   # GET /shows.json
   def index

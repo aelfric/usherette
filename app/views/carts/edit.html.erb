@@ -1,3 +1,4 @@
+<% content_for :title, "Shopping Cart" %>
 <% need_to_mail = []%>
 <%= form_for @current_cart do |f|%>
   <% if @current_cart.errors.any? %>

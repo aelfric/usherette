@@ -6,4 +6,8 @@ class Show < ActiveRecord::Base
   def description_to_html 
       return self.description.gsub("\n", "<br />").html_safe
   end
+  
+  def to_param
+      "#{id}-#{title}".parameterize
+  end
 end

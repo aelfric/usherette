@@ -1,24 +1,29 @@
+<% content_for :title, @show.title %>
 <p id="notice"><%= notice %></p>
 
 <h2><%= @show.title %></h2>
-<p>
-  <%= @show.description_to_html %>
-</p>
+<div class='column left'>
+    <h3>About the show</h3>
+<p> <%= @show.description_to_html %> </p>
+  </div>
+  <div class='column right'>
 
-<%= link_to new_performance_path(show_id: @show.id), :class=>'add_btn' do %>
-    <i class='icon-plus'></i> New Performance
-<% end %>
-<%= link_to edit_show_path(@show), :class=>'add_btn' do  %>
-    <i class='icon-edit'></i> Edit Curent Show
-<% end %>
+<h3>Performances:</h3>
 <div class='list'>
     <% @show.performances.each do |performance| %>
         <div class='listing'>
-            <h2><%= performance.venue.name %><br /><%= performance.date_string %></h2>
-            <span class='actions'>
-                <%= link_to "Show", performance_path(performance) %> | 
-                <%= link_to "Edit", edit_performance_path(performance) %>
-            </span>
+            <p><b><%= performance.venue.name %></b><br />
+                <%= link_to "#{performance.date_string}", performance_path(performance) %></p> 
+            <%= link_to_if user_signed_in?, "Edit", edit_performance_path(performance)%>
         </div>
     <% end %>
+    <% if user_signed_in? %>
+        <%= link_to new_performance_path(show_id: @show.id), :class=>'add_btn' do %>
+        <i class='icon-plus'></i> New Performance
+        <% end %>
+        <%= link_to edit_show_path(@show), :class=>'add_btn' do  %>
+            <i class='icon-edit'></i> Edit Curent Show
+        <% end %>
+<% end %>
+</div>
 </div>
