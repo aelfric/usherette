@@ -1,6 +1,8 @@
 <% content_for :title, @show.title %>
+<% if @show.banner? %>
+    <%= image_tag @show.banner.url(:medium) %>
+<% end %>
 <p id="notice"><%= notice %></p>
-
 <h2><%= @show.title %></h2>
 <div class='column left'>
     <h3>About the show</h3>

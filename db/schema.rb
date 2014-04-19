@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140126171421) do
+ActiveRecord::Schema.define(:version => 20140419180512) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at",                     :null => false
@@ -49,8 +49,12 @@ ActiveRecord::Schema.define(:version => 20140126171421) do
   create_table "shows", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
   end
 
   create_table "tickets", :force => true do |t|
