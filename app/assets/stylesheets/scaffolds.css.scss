@@ -82,10 +82,15 @@ div {
 .container {
     width: 960px;
     margin: 0 auto;
+    overflow: scroll;
     @media screen and (max-width: 960px){
-        padding: 10px;
+        padding: 0 10px;
         width: 100%;
     }
+}
+
+.banner {
+    width: 100%;
 }
 
 .column {

@@ -1,6 +1,6 @@
 <% content_for :title, "#{@performance.show.title}, #{@performance.date_string}" %>
 <% if @performance.show.banner? %>
-    <%= image_tag @performance.show.banner.url(:medium) %>
+        <%= image_tag @performance.show.banner.url(:medium), :class=>'banner' %>
 <% end %>
 <h2><%= @performance.show.title %></h2>
 <div class='column left'>
