@@ -27,6 +27,7 @@ group :development do
     gem 'capistrano'
     gem 'capistrano-ext'
     gem 'rvm-capistrano'
+    gem 'rack-mini-profiler'
 end
 
 gem 'simple_enum'

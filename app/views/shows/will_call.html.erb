@@ -35,7 +35,7 @@
         <tr>
             <td colspan='7' class='dark'><%= p.date_string %></td>
             <% i = 0 %>
-            <% p.tickets.joins(:cart).where('carts.purchased_at is not null').order("carts.#{@sort}").each_with_index do |t,i| %>
+            <% p.tickets.includes(:cart, {:cart => :payment_notification}).where('carts.purchased_at is not null').order("carts.#{@sort}").each_with_index do |t,i| %>
                 <% if t.cart.purchased_at? %>
                     <tr class='<%= i % 2 ==0 ? 'even':'odd' %>'>
                         <td><%= t.cart.placed_at %></td>
