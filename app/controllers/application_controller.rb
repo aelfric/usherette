@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
             session[:cart_id] ||= @current_cart.id
         end
         @current_cart
+    rescue ActiveRecord::RecordNotFound
+        @current_cart = Cart.create!
+        session[:cart_id] = @current_cart.id
     end
+
     def redirect_using_post(url, params)
         render :text => %Q{<form action="#{url}">#{params.map{|k,v| %Q{<input type=
                                                                hidden" name="#{k}" value="#{v}" />}}.join('')}</form><script>document.forms[0].submit()</script>}

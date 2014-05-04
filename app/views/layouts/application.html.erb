@@ -14,7 +14,7 @@
             <div class='container'>
                 <h1 style=''><%= link_to "Usherette", root_path %></h1>
                 <div class='shopping-cart'>
-                    <i class='icon-shopping-cart'></i> <%= link_to "My Cart (#{@current_cart.tickets.count})", edit_cart_path(@current_cart) %>
+                    <i class='icon-shopping-cart'></i> <%= link_to "My Cart (#{@current_cart.tickets.size})", edit_cart_path(@current_cart) %>
             </div>
                 <% if user_signed_in? %>
                     <div class='logout'>
