@@ -29,9 +29,8 @@ class CartsController < ApplicationController
     end
 
     def update
-        @cart = current_cart
-        if @cart.update_attributes(params[:cart].merge(:placed_at => Time.now()))
-            @cart.save
+        if @current_cart.update_attributes(params[:cart].merge(:placed_at => Time.now()))
+            @current_cart.save
             @encrypted = @current_cart.paypal_encrypted_url(performances_url, payment_notifications_url)
         else
             render :edit
