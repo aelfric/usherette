@@ -14,7 +14,7 @@ class TicketsController < ApplicationController
 
     def destroy
         @ticket = Ticket.find(params[:id])
-        if @ticket.cart == current_cart
+        if @ticket.cart == @current_cart
             @ticket.destroy
             redirect_to edit_cart_url(current_cart), :notice => 'These tickets have been removed from your cart.'
         else

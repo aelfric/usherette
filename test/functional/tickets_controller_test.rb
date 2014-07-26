@@ -16,6 +16,7 @@ class TicketsControllerTest < ActionController::TestCase
         ticket = Ticket.last
         assert_difference('Ticket.count', -1) do
             delete :destroy, id: ticket.id 
+            assert_response :redirect
         end
     end
 end
