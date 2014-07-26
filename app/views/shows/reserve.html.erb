@@ -35,7 +35,7 @@
 </table>
 <div class='field'>
     <%= f.label :payment_type %>
-    <%= f.select :payment_type, Cart.payment_types.keys, :include_blank => true %>
+    <%= f.select :payment_type, Cart.payment_types.keys, {:include_blank => true, :selected => nil} %>
     <div>
 <div class='field'>
     <%= f.submit 'Submit' %>
