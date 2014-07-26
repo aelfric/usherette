@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  show: 
-  venue: 
-  date: 2013-04-07 22:59:49
-
-two:
-  show: 
-  venue: 
-  date: 2013-04-07 22:59:49
+    show: hamlet
+    venue: globe
+    date: <%= Date.today + 1.month %>
+    price: 2000

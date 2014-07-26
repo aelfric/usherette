@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  title: MyString
-  description: MyText
-
-two:
-  title: MyString
-  description: MyText
+hamlet:
+  title: Hamlet
+  description: Uncle kills nephew's father.  Father's ghost tells nephew.  Nephew wants revenge. Everyone dies.

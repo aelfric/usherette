@@ -2,7 +2,9 @@ require 'test_helper'
 
 class ShowsControllerTest < ActionController::TestCase
   setup do
-    @show = shows(:one)
+    @user = users(:one)
+    sign_in @user
+    @show = shows(:hamlet)
   end
 
   test "should get index" do
