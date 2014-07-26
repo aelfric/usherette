@@ -27,6 +27,12 @@ class PerformancesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get show" do
+    @performance = performances(:one)
+    get :show, id: @performance.id
+    assert_response :success
+  end
+
   private
     def initialize_user 
         @user = users(:one)
