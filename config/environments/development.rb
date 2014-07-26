@@ -35,4 +35,11 @@ Usherette::Application.configure do
   config.assets.debug = false
 
   config.action_mailer.deliver_method :smtp
+
+  config.middleware.use ExceptionNotification::Rack,
+      :email => {
+          :email_prefix => "[Usherette] ",
+          :sender_address => %{"notifier" <noreply@tickets.hopeforchange.org>},
+          :exception_recipients => %w{friccobono@hopeforchange.org}
+      }
 end

@@ -65,6 +65,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.0.2)
     highline (1.6.21)
     hike (1.2.3)
@@ -157,6 +160,7 @@ DEPENDENCIES
   capistrano-ext
   coffee-rails (~> 3.2.1)
   devise
+  exception_notification
   jquery-rails
   paperclip
   pg

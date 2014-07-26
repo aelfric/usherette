@@ -34,6 +34,7 @@ gem 'simple_enum'
 gem 'rack-ssl-enforcer'
 gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 gem 'paperclip'
+gem 'exception_notification'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
