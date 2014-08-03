@@ -1,7 +1,12 @@
+<% content_for :title, "#{@show.title} Reservations" %>
 <style>
 </style>
 <h2>Will Call - <%= @show.title %></h2>
-<table class='fancy' cellpadding=0 cellspacing=0 >
+
+<%= link_to will_call_path(@show, :print=>true) do %>
+    <i class='icon-print'></i> Print
+<% end %>
+<table class='fancy' cellpadding=0 cellspacing=0 width='100%' >
     <thead>
         <tr>
             <td>
@@ -25,17 +30,17 @@
                 <% end %>
              </td>
                 <td>Qty.</td>
-                <td>Type</td>
-                <td>Address</td>
+                <td><%= link_to will_call_path(@show, :sort=>'payment_type_cd') do %>
+                    Type <i class='icon-sort-by-alphabet'></i>
+                <% end %></td>
             </tr>
         </thead>
         <% total = 0 %>
-        <% @performances.each do |p| %>
-            <% perf_total = 0 %>
+        <% @performances.each_with_index do |p, idx| 
+            perf_total = 0 %>
         <tr>
-            <td colspan='7' class='dark'><%= p.date_string %></td>
-            <% i = 0 %>
-            <% p.tickets.includes(:cart, {:cart => :payment_notification}).where('carts.purchased_at is not null').order("carts.#{@sort}").each_with_index do |t,i| %>
+            <td colspan='6' class='dark'><%= p.date_string %></td>
+            <% @performance_tickets[idx].each_with_index do |t,i| %>
                 <% if t.cart.purchased_at? %>
                     <tr class='<%= i % 2 ==0 ? 'even':'odd' %>'>
                         <td><%= t.cart.placed_at %></td>
@@ -44,20 +49,19 @@
                         <td><%= t.cart.order_email %></td>
                         <td><%= t.quantity %></td>
                         <td><%= t.cart.payment_type %></td>
-                        <td><%= render :partial=>'address', :locals => {:payment_notification => t.cart.payment_notification} %></td>
                         <% total += t.quantity %>
                         <% perf_total += t.quantity %>
                     </tr>
                 <% end %>
             <% end %>
                 <tr class='minor_total'>
-                <td colspan='6'><%= p.date_string %> Total</td>
+                <td colspan='5'><%= p.date_string %> Total</td>
                 <td><%= perf_total %></td>
             </tr>
         </tr>
     <% end %>
         <tr class='total'>
-            <td colspan='6'>Show Total</td>
+            <td colspan='5'>Show Total</td>
             <td><%= total %></td>
         </tr>
     </table>
