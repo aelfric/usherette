@@ -3,8 +3,14 @@
 </style>
 <h2>Will Call - <%= @show.title %></h2>
 
-<%= link_to will_call_path(@show, :print=>true) do %>
-    <i class='icon-print'></i> Print
+<% if params[:print] != "1" %>
+    <%= link_to will_call_path(@show, :print=>1) do %>
+        <i class='icon-print'></i> Print
+    <% end %>
+<% else %>
+    <%= link_to will_call_path(@show) do %>
+        <i class='icon-print'></i> Don't Print
+    <% end %>
 <% end %>
 <table class='fancy' cellpadding=0 cellspacing=0 width='100%' >
     <thead>
@@ -47,7 +53,7 @@
                         <td><%= t.cart.order_firstname %> </td>
                         <td><%= t.cart.order_lastname %></td>
                         <td><%= t.cart.order_email %></td>
-                        <td><%= t.quantity %></td>
+                        <td><%= t.quantity %> <%="☐ " * t.quantity if params[:print] == "1"%></td>
                         <td><%= t.cart.payment_type %></td>
                         <% total += t.quantity %>
                         <% perf_total += t.quantity %>
