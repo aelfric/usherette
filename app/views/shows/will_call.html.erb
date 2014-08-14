@@ -49,7 +49,7 @@
             <% @performance_tickets[idx].each_with_index do |t,i| %>
                 <% if t.cart.purchased_at? %>
                     <tr class='<%= i % 2 ==0 ? 'even':'odd' %>'>
-                        <td><%= t.cart.placed_at %></td>
+                        <td><%= t.cart.placed_at.localtime %></td>
                         <td><%= t.cart.order_firstname %> </td>
                         <td><%= t.cart.order_lastname %></td>
                         <td><%= t.cart.order_email %></td>
