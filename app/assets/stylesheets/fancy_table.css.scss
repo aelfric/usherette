@@ -26,6 +26,7 @@
     .minor_total {
         font-weight: bold;
         font-style: italic;
+        page-break-after: always;
         td { border-top: 1px solid #333; }
     }
 
