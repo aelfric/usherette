@@ -85,7 +85,7 @@ class ShowsController < ApplicationController
   def will_call
       @show = Show.find(params[:id])
       @sort = params[:sort] ? params[:sort] : 'purchased_at'
-      @performances = Performance.find_all_by_show_id(@show.id)
+      @performances = @show.performances.order('date')
       @performance_tickets = @performances.map.with_index do |p, idx|
           p.tickets.includes(:cart).where('carts.purchased_at is not null').order("carts.#{@sort}")
       end
