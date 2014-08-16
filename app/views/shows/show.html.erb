@@ -12,7 +12,7 @@
 
 <h3>Performances:</h3>
 <div class='list'>
-    <% @show.performances.each do |performance| %>
+    <% @performances.each do |performance| %>
         <div class='listing'>
             <p><b><%= performance.venue.name %></b><br />
                 <%= link_to "#{performance.date_string}", performance_path(performance) %></p> 

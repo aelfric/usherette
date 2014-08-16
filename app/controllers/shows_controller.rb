@@ -15,7 +15,7 @@ class ShowsController < ApplicationController
   # GET /shows/1.json
   def show
     @show = Show.find(params[:id])
-
+    @performances = @show.performances.order('date')
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @show }
@@ -94,6 +94,6 @@ class ShowsController < ApplicationController
   def reserve
       @cart = Cart.new
       @show = Show.find(params[:id])
-      @performances = @show.performances
+      @performances = @show.performances.order('date')
   end
 end

@@ -25,7 +25,7 @@
         <td>Performance</td>
         <td>Quantity</td>
     </tr>
-    <% @show.performances.each do |p| %>
+    <% @performances.each do |p| %>
         <tr>
         <td><%= p.date_string %></td>
         <td><%= hidden_field_tag "perf[]", p.id %>
