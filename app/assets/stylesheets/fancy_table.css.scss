@@ -12,10 +12,16 @@
         .dark {
             background-color: #633E56; 
             color: white;
-            text-align: center;}
+            text-align: center;
+        }
 
-        .odd { background-color: #FCB6E4;}
+        .odd { background-color: #C2C2C2;}
         .even {background-color: #FFFFFF;}
+
+        .odd td{
+            border-top: 1px solid #C2C2C2;
+            border-bottom: 1px solid #C2C2C2;
+        }
 
 
     .total {
