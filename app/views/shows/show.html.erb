@@ -6,7 +6,7 @@
 <h2><%= @show.title %></h2>
 <div class='column left'>
     <h3>About the show</h3>
-<p> <%= @show.description_to_html %> </p>
+    <div class='show-descrition'> <%= simple_format(@show.description) %> </div>
   </div>
   <div class='column right'>
 

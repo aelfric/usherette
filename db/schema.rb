@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140424143322) do
+ActiveRecord::Schema.define(:version => 20140817124103) do
 
   create_table "carts", :force => true do |t|
     t.datetime "created_at",                     :null => false
@@ -56,6 +56,10 @@ ActiveRecord::Schema.define(:version => 20140424143322) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "tickets", :force => true do |t|
