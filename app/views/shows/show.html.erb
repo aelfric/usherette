@@ -3,9 +3,16 @@
     <%= image_tag @show.banner.url(:medium), :class=>'banner' %>
 <% end %>
 <p id="notice"><%= notice %></p>
-<h2><%= @show.title %></h2>
+<% if @performance.show.banner? %>
+        <%= image_tag @performance.show.banner.url(:medium), :class=>'banner' %>
+<% end %>
+<% if @performance.show.logo? %>
+    <%= image_tag @performance.show.logo.url(:medium), :class=>'show-logo', :alt => @performance.show.title %>
+<% else %>
+    <h2><%= @performance.show.title %></h2>
+<% end %>
+<div class='clear'></div>
 <div class='column left'>
-    <h3>About the show</h3>
     <div class='show-descrition'> <%= simple_format(@show.description) %> </div>
   </div>
   <div class='column right'>
