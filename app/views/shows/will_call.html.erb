@@ -46,9 +46,9 @@
             perf_total = 0 %>
         <tr>
             <td colspan='6' class='dark'><%= p.date_string %></td>
-            <% @performance_tickets[idx].each_with_index do |t,i| %>
+            <% @performance_tickets[idx].each do |t| %>
                 <% if t.cart.purchased_at? %>
-                    <tr class='<%= i % 2 ==0 ? 'even':'odd' %>'>
+                    <tr class='<%= cycle('even','odd') %>'>
                         <td><%= t.cart.placed_at.localtime %></td>
                         <td><%= t.cart.order_firstname %> </td>
                         <td><%= t.cart.order_lastname %></td>
