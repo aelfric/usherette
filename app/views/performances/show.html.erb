@@ -12,7 +12,7 @@
     <div class='show-description'><%= simple_format(@performance.show.description) %></div>
 </div>
 <div class='column right'>
-    <table >
+    <table class='show-details-table'>
         <% if @performance.venue %>
             <tr valign='top'>
             <td><b>Where:</b></td> 
@@ -33,16 +33,22 @@
             <td><b>Price:</b> </td>
             <td><%= @performance.price_string %></td>
         </tr>
-    </table>
     <% if @performance.sold_out? %>
-        <p>We're sorry.  This performance is Sold Out.</p>
+        <tr><td colspan='2'><p>We're sorry.  This performance is Sold Out.</p></td></tr>
     <% elsif @performance.date <= Date.today %>
-        <p>This performance occurred in the past.</p>
+        <tr><td colspan='2'><p>This performance occurred in the past.</p></td></tr>
     <% else %>
         <%= form_for Ticket.new do |f| %>
-            <p><b>How Many:</b> <%= f.select :quantity, (1..10).to_a %> </p>
-            <%= f.hidden_field :performance_id, value: @performance.id %>
-            <%= f.submit "Add to cart", class:'button' %>
+            <td><b>How Many:</td>
+            <td><%= f.select :quantity, (1..10).to_a %> </p>
+                <%= f.hidden_field :performance_id, value: @performance.id %>
+            </td>
+            <tr>
+                <td colspan='2'>
+                    <%= f.submit "Add to cart", class:'button' %>
+                </td>
+            </tr>
         <% end %>
     <% end %>
+    </table>
 </div>
