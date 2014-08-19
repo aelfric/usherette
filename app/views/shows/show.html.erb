@@ -1,15 +1,12 @@
 <% content_for :title, @show.title %>
 <% if @show.banner? %>
-    <%= image_tag @show.banner.url(:medium), :class=>'banner' %>
+        <%= image_tag @show.banner.url(:medium), :class=>'banner' %>
 <% end %>
 <p id="notice"><%= notice %></p>
-<% if @performance.show.banner? %>
-        <%= image_tag @performance.show.banner.url(:medium), :class=>'banner' %>
-<% end %>
-<% if @performance.show.logo? %>
-    <%= image_tag @performance.show.logo.url(:medium), :class=>'show-logo', :alt => @performance.show.title %>
+<% if @show.logo? %>
+    <%= image_tag @show.logo.url(:medium), :class=>'show-logo', :alt => @show.title %>
 <% else %>
-    <h2><%= @performance.show.title %></h2>
+    <h2><%= @show.title %></h2>
 <% end %>
 <div class='clear'></div>
 <div class='column left'>
