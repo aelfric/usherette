@@ -4,7 +4,7 @@
 <h2>Will Call - <%= @show.title %></h2>
 
 <% if params[:print] != "1" %>
-    <%= link_to will_call_path(@show, :print=>1) do %>
+    <%= link_to will_call_path(@show, :print=>1, :sort=>'order_lastname') do %>
         <i class='icon-print'></i> Print
     <% end %>
 <% else %>
