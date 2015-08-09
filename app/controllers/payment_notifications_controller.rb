@@ -7,8 +7,8 @@ class PaymentNotificationsController < ApplicationController
             @cart = Cart.find(params[:invoice])
             @cart.order_email = params[:payer_email]
             @cart.save
-            render :nothing => true
         end
+        render :nothing => true
     end
 
     def index
